@@ -1,6 +1,4 @@
-// Add some interactivity
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add animation to elements when they come into view
+document.addEventListener('DOMContentLoaded', function() {
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -15,7 +13,6 @@
                 });
             }, observerOptions);
 
-            // Observe elements for animation
             const animatedElements = document.querySelectorAll('.social-link, .portfolio-link');
             animatedElements.forEach(el => {
                 el.style.opacity = 0;
@@ -24,10 +21,8 @@
                 observer.observe(el);
             });
 
-            // Add click animation to social links
             document.querySelectorAll('.social-link').forEach(link => {
                 link.addEventListener('click', function(e) {
-                    // Create ripple effect
                     const ripple = document.createElement('span');
                     const rect = this.getBoundingClientRect();
                     const size = Math.max(rect.width, rect.height);
