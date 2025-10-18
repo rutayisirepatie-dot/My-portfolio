@@ -1,3 +1,6 @@
+/* ==============================
+   ROOT VARIABLES
+============================== */
 :root {
     --primary-color: #3498db;
     --secondary-color: #2c3e50;
@@ -9,6 +12,9 @@
     --transition: all 0.3s ease;
 }
 
+/* ==============================
+   GLOBAL RESETS
+============================== */
 * {
     margin: 0;
     padding: 0;
@@ -25,6 +31,9 @@ body {
     flex-direction: column;
 }
 
+/* ==============================
+   CONTAINER
+============================== */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -32,15 +41,18 @@ body {
     width: 100%;
 }
 
+/* ==============================
+   HEADER
+============================== */
 header {
+    position: relative;
+    z-index: 20;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     padding: 2rem 0;
     text-align: center;
     box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
+    overflow: visible; /* allow dropdown to extend */
 }
 
 header::before {
@@ -52,26 +64,29 @@ header::before {
     height: 100%;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
     background-size: cover;
+    z-index: 0; /* keep behind everything */
 }
 
 .profile-container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     padding: 0 15px;
 }
 
+/* ==============================
+   PROFILE SECTION
+============================== */
 .profile-image {
     width: 150px;
     height: 150px;
+    margin: 0 auto 20px;
+    display: block;
     border-radius: 50%;
     border: 5px solid white;
-    box-shadow: var(--shadow);
-    margin: 0 auto 20px;
     object-fit: cover;
+    box-shadow: var(--shadow);
     transition: var(--transition);
-    display: block;
 }
-
 .profile-image:hover {
     transform: scale(1.05);
 }
@@ -102,7 +117,9 @@ header::before {
     margin: 20px auto;
     border-radius: 2px;
 }
-
+/* ==============================
+   CONTACT INFO
+============================== */
 .contact-info {
     display: flex;
     justify-content: center;
@@ -125,6 +142,9 @@ header::before {
     flex-shrink: 0;
 }
 
+/* ==============================
+   PORTFOLIO BUTTON
+============================== */
 .portfolio-link {
     display: inline-block;
     background-color: white;
@@ -138,12 +158,14 @@ header::before {
     box-shadow: var(--shadow);
     font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
-
 .portfolio-link:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* ==============================
+   SOCIAL SECTION
+============================== */
 .social-section {
     padding: 40px 0;
     text-align: center;
@@ -157,7 +179,6 @@ header::before {
     position: relative;
     display: inline-block;
 }
-
 .section-title::after {
     content: '';
     position: absolute;
@@ -191,7 +212,6 @@ header::before {
     width: min(150px, 100%);
     min-width: 120px;
 }
-
 .social-link:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -208,24 +228,136 @@ header::before {
     font-size: clamp(0.9rem, 2.5vw, 1.1rem);
 }
 
-/* YouTube button hover effect */
 .youtube-btn:hover {
     color: #FF0000;
     opacity: 0.85;
     transform: scale(1.05);
-    transition: all 0.3s ease;
 }
-
-/* Instagram button hover effect */
 .instagram-btn:hover {
     background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
-    -webkit-background-clip: text;
+    -webkit-background-clip:text;
     -webkit-text-fill-color: transparent;
     opacity: 0.85;
     transform: scale(1.05);
-    transition: all 0.3s ease;
+}
+.x-btn {
+    background-color: #ffffff !important;
+    color: #000000 !important;            
 }
 
+.x-btn svg.social-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #000000;
+}
+.x-btn:hover {
+    background-color:white!important;
+    color: #00000000 !important;     
+}
+
+/* ==============================
+   NAVIGATION MENU
+============================== */
+nav {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    position: relative;
+}
+
+.menu > li {
+    position: relative;
+    display: inline-block;
+}
+
+.menu > li > a {
+    display: inline-block;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    padding: 12px 28px;
+    border-radius: 30px;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+.menu > li > a:hover {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #3b0a57; /* dark purple */
+    min-width: 180px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: left;
+    overflow: hidden;
+    z-index: 99999;
+    animation: fadeIn 0.25s ease-in-out;
+}
+
+.dropdown-content li {
+    list-style: none;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: #f5f5f5;
+    font-weight: 500;
+    transition: var(--transition);
+}
+.dropdown-content a:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Show on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Prevent flicker */
+.dropdown::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 10px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* ==============================
+   FOOTER
+============================== */
 footer {
     background-color: var(--secondary-color);
     color: white;
@@ -235,7 +367,9 @@ footer {
     flex-shrink: 0;
 }
 
-/* Ripple effect */
+/* ==============================
+   EFFECTS
+============================== */
 .ripple {
     position: absolute;
     border-radius: 50%;
@@ -251,59 +385,30 @@ footer {
     }
 }
 
-/* Mobile-first responsive fixes */
+/* ==============================
+   RESPONSIVE STYLES
+============================== */
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-    
-    header {
-        padding: 1.5rem 0;
-    }
-    
-    .profile-image {
-        width: 130px;
-        height: 130px;
-    }
-    
-    .contact-info {
-        flex-direction: column;
-        gap: 12px;
-        align-items: center;
-    }
-    
-    .social-links {
-        gap: 15px;
-    }
-    
-    .social-link {
-        width: calc(50% - 10px);
-        max-width: 160px;
-        padding: 15px 10px;
-    }
+    .container { padding: 15px; }
+    header { padding: 1.5rem 0; }
+    .profile-image { width: 130px; height: 130px; }
+    .contact-info { flex-direction: column; gap: 12px; align-items: center; }
+    .social-links { gap: 15px; }
+    .social-link { width: calc(50% - 10px); max-width: 160px; padding: 15px 10px; }
+}
+
+@media (max-width: 600px) {
+    nav { margin-top: 1rem; }
+    .menu > li > a { padding: 10px 20px; font-size: 0.95rem; }
+    .dropdown-content { min-width: 160px; }
+    .dropdown-content a { padding: 10px 14px; }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-    
-    header {
-        padding: 1rem 0;
-    }
-    
-    .profile-image {
-        width: 120px;
-        height: 120px;
-        border-width: 4px;
-    }
-    
-    .social-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-    }
-    
+    .container { padding: 10px; }
+    header { padding: 1rem 0; }
+    .profile-image { width: 120px; height: 120px; border-width: 4px; }
+    .social-links { flex-direction: column; align-items: center; gap: 12px; }
     .social-link {
         width: 100%;
         max-width: 200px;
@@ -312,50 +417,33 @@ footer {
         text-align: left;
         padding: 15px 20px;
     }
-    
-    .social-icon {
-        margin-bottom: 0;
-        margin-right: 15px;
-        font-size: 1.8rem;
-    }
-    
-    .divider {
-        width: 60px;
-    }
-    
-    .contact-item {
-        font-size: 0.9rem;
-    }
+    .social-icon { margin-right: 15px; font-size: 1.8rem; margin-bottom: 0; }
+    .divider { width: 60px; }
+    .contact-item { font-size: 0.9rem; }
 }
 
 @media (max-width: 360px) {
-    .name {
-        font-size: 1.6rem;
-    }
-    
-    .profile-image {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .social-link {
-        padding: 12px 15px;
-    }
+    .name { font-size: 1.6rem; }
+    .profile-image { width: 100px; height: 100px; }
+    .social-link { padding: 12px 15px; }
 }
 
-/* Ensure proper spacing on very small screens */
 @media (max-height: 600px) and (orientation: landscape) {
-    header {
-        padding: 1rem 0;
-    }
-    
-    .profile-image {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 10px;
-    }
-    
-    .social-section {
-        padding: 20px 0;
-    }
+    header { padding: 1rem 0; }
+    .profile-image { width: 80px; height: 80px; margin-bottom: 10px; }
+    .social-section { padding: 20px 0; }
+}
+/* X (formerly Twitter) button styling */
+.social-link.x-btn {
+    background-color: #000;   /* X brand black */
+    color: #fff;              /* white text/icon */
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.social-link.x-btn:hover {
+    background-color: #1a1a1a; /* slightly lighter on hover */
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    color: #fff;               /* keep icon white */
 }
